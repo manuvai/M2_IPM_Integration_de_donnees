@@ -17,15 +17,15 @@ SELECT NomC
 FROM Cheval Ch
 WHERE NOT EXISTS (
     SELECT *
-    FROM Course Co, Hippo H
-    WHERE Co.CodeH = H.CodeH
-    AND LOWER(H.NomH) = 'chantilly'
-    AND NOT EXISTS (
+    FROM Course Co
+    WHERE NOT EXISTS (
         SELECT *
-        FROM Participe P, VersionCours VC
+        FROM Participe P, VersionCours VC, Hippo H
         WHERE P.CodeVE = VC.CodeVE
             AND Ch.CodeC = P.CodeC
             AND VC.CodeCo = Co.CodeCo
+            AND Co.CodeH = H.CodeH
+            AND LOWER(H.NomH) = 'chantilly'
             AND TO_CHAR(VC.DateVE, 'YYYY') = 2017
     )
 )
