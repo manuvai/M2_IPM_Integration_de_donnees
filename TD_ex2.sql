@@ -38,5 +38,16 @@ WHERE NOT EXISTS (
 
 -- 19. Nom des sociétés ayant réservé tous les types de chambres
 SELECT RaisonSoc
-FROM Societe
+FROM Societe S
 WHERE 1 = 1
+    AND NOT EXISTS (
+        SELECT *
+        FROM TypeCh TC
+        WHERE NOT EXISTS (
+            SELECT *
+            FROM Reserver R, Client Clt
+            WHERE R.CodeC = Clt.CodeC
+                AND R.CodeTyCH = TC.CodeTyCH
+                AND Clt.CodeSoc = S.CodeSoc
+        )
+    )
