@@ -36,3 +36,6 @@ WHERE NOT EXISTS (
 )
 
 -- 19. Nom des sociétés ayant réservé tous les types de chambres
+SELECT RaisonSoc
+FROM Societe
+WHERE 1 = 1
