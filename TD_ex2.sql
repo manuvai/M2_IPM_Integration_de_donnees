@@ -20,7 +20,8 @@
 -- 12. Nom des hôtels français de 3 étoiles ne proposant pas le type de chambres « suite »
 
 -- 13. Nom des clients ayant réservé un hôtel dans tous les groupes hôteliers proposés par la BD
-SELECT NomC
+-- ✅ Correct
+SELECT NomC, PrenomC
 FROM Client Cl
 WHERE NOT EXISTS (
     SELECT *
